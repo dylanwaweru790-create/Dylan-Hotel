@@ -6,6 +6,7 @@ import {
   validateReservationDate,
   validateReservationForm,
   calculateOrderTotals,
+  getRestaurantStatus,
 } from './validation.js';
 
 describe('Vanilla JS Validation Module', () => {
@@ -159,6 +160,37 @@ describe('Vanilla JS Validation Module', () => {
       expect(result.tax).toBe(7.43);
       expect(result.tip).toBe(13.5);
       expect(result.total).toBe(110.93);
+    });
+  });
+
+  describe('getRestaurantStatus', () => {
+    it('detects lunch service (1:00 PM)', () => {
+      const lunchTime = new Date('2026-10-22T13:00:00');
+      const status = getRestaurantStatus(lunchTime);
+      expect(status.isOpen).toBe(true);
+      expect(status.service).toBe('lunch');
+    });
+
+    it('detects afternoon prep transition (4:00 PM)', () => {
+      const prepTime = new Date('2026-10-22T16:00:00');
+      const status = getRestaurantStatus(prepTime);
+      expect(status.isOpen).toBe(false);
+      expect(status.service).toBe('transition');
+      expect(status.shortMessage).toBe('Opens at 5:00 PM');
+    });
+
+    it('detects dinner service (7:30 PM)', () => {
+      const dinnerTime = new Date('2026-10-22T19:30:00');
+      const status = getRestaurantStatus(dinnerTime);
+      expect(status.isOpen).toBe(true);
+      expect(status.service).toBe('dinner');
+    });
+
+    it('detects closed late night (2:00 AM)', () => {
+      const nightTime = new Date('2026-10-22T02:00:00');
+      const status = getRestaurantStatus(nightTime);
+      expect(status.isOpen).toBe(false);
+      expect(status.service).toBe('closed');
     });
   });
 });
