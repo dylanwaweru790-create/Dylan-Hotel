@@ -90,3 +90,51 @@ export function calculateOrderTotals(params) {
     total,
   };
 }
+
+export function getRestaurantStatus(date = new Date()) {
+  const day = date.getDay(); // 0 = Sun, 5 = Fri, 6 = Sat
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const timeInMinutes = hour * 60 + minute;
+
+  const lunchOpen = 11 * 60 + 30; // 11:30 AM (690 mins)
+  const lunchClose = 15 * 60; // 3:00 PM (900 mins)
+  const dinnerOpen = 17 * 60; // 5:00 PM (1020 mins)
+  const isWeekend = day === 0 || day === 5 || day === 6;
+  const dinnerClose = isWeekend ? 23 * 60 : 22 * 60 + 30; // 11:00 PM (1380 mins) or 10:30 PM (1350 mins)
+
+  if (timeInMinutes >= lunchOpen && timeInMinutes < lunchClose) {
+    return {
+      isOpen: true,
+      service: 'lunch',
+      message: 'Open Now · Lunch Service until 3:00 PM',
+      shortMessage: 'Open for Lunch',
+    };
+  }
+
+  if (timeInMinutes >= lunchClose && timeInMinutes < dinnerOpen) {
+    return {
+      isOpen: false,
+      service: 'transition',
+      message: 'Dinner Service opens at 5:00 PM',
+      shortMessage: 'Opens at 5:00 PM',
+    };
+  }
+
+  if (timeInMinutes >= dinnerOpen && timeInMinutes < dinnerClose) {
+    const closeTimeStr = isWeekend ? '11:00 PM' : '10:30 PM';
+    return {
+      isOpen: true,
+      service: 'dinner',
+      message: `Open Now · Dinner Service until ${closeTimeStr}`,
+      shortMessage: 'Open for Dinner',
+    };
+  }
+
+  return {
+    isOpen: false,
+    service: 'closed',
+    message: 'Closed Now · Opens at 11:30 AM',
+    shortMessage: 'Opens at 11:30 AM',
+  };
+}
