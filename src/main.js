@@ -3,6 +3,7 @@ import { MenuModule } from './modules/menu.js';
 import { ReservationsModule } from './modules/reservations.js';
 import { OrdersModule } from './modules/orders.js';
 import { ApiConsoleModule } from './modules/apiConsole.js';
+import { ReviewsModule } from './modules/reviews.js';
 import { getRestaurantStatus } from './modules/validation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -18,11 +19,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const reservationsModule = new ReservationsModule();
   reservationsModule.init();
 
-  // 4. Initialize REST API Inspector Module
+  // 4. Initialize Guest Reviews Module
+  const reviewsModule = new ReviewsModule();
+  await reviewsModule.init();
+
+  // 5. Initialize REST API Inspector Module
   const apiConsoleModule = new ApiConsoleModule(menuModule);
   apiConsoleModule.init();
 
-  // 5. Dynamic Live Hours & Status Badge
+  // 6. Dynamic Live Hours & Status Badge
   function updateLiveHours() {
     const status = getRestaurantStatus();
     const navStatus = document.getElementById('nav-live-status');
