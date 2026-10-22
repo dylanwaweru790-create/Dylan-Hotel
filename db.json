@@ -1,0 +1,196 @@
+{
+  "menu": [
+    {
+      "id": "starter-1",
+      "name": "Pugliese Burrata & Heirloom Tomatoes",
+      "category": "starters",
+      "price": 18,
+      "description": "Creamy burrata, balsamic reduction, basil oil, toasted sourdough crisps, and sea salt flakes.",
+      "ingredients": ["Fresh burrata", "Heirloom tomatoes", "Aged Modena balsamic", "Genovese basil", "Grilled rustic bread"],
+      "dietary": ["vegetarian"],
+      "image": "https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=800&q=80",
+      "calories": 420,
+      "prepTimeMinutes": 12
+    },
+    {
+      "id": "starter-2",
+      "name": "Crispy Point Judith Calamari",
+      "category": "starters",
+      "price": 20,
+      "description": "Flash-fried squid with smoked paprika remoulade, pickled Fresno chilis, and grilled Meyer lemon.",
+      "ingredients": ["Point Judith squid", "Smoked chili remoulade", "Pickled fresno peppers", "Meyer lemon", "Fresh parsley"],
+      "dietary": ["dairy-free"],
+      "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=800&q=80",
+      "calories": 490,
+      "prepTimeMinutes": 14
+    },
+    {
+      "id": "starter-3",
+      "name": "Classic French Onion Soup",
+      "category": "starters",
+      "price": 16,
+      "description": "Caramelized sweet onions in rich beef bone broth, topped with Gruyère and toasted baguette crouton.",
+      "ingredients": ["Caramelized yellow onions", "Beef shank broth", "Cave-aged Gruyère", "Baguette", "Thyme"],
+      "dietary": ["chef-special"],
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80",
+      "calories": 380,
+      "prepTimeMinutes": 15
+    },
+    {
+      "id": "main-1",
+      "name": "Handmade Pappardelle al Tartufo",
+      "category": "mains",
+      "price": 28,
+      "description": "Fresh egg ribbon pasta tossed in a slow-braised wild forest mushroom ragù, shaved black winter truffle, and aged Parmigiano-Reggiano.",
+      "ingredients": ["Hand-rolled egg pasta", "Chanterelle and porcini mushrooms", "Black truffle carpaccio", "Thyme", "24-month Parmigiano"],
+      "dietary": ["vegetarian", "chef-special"],
+      "image": "/src/assets/images/dish_handmade_pasta_1792700293268.jpg",
+      "calories": 680,
+      "prepTimeMinutes": 20
+    },
+    {
+      "id": "main-2",
+      "name": "Pan-Seared Chilean Sea Bass",
+      "category": "mains",
+      "price": 38,
+      "description": "Sustainably caught sea bass with crispy skin, creamy saffron fennel broth, baby leeks, and roasted fingerling potatoes.",
+      "ingredients": ["Wild Chilean sea bass", "Saffron fennel velouté", "Braised young leeks", "Herb-roasted fingerlings"],
+      "dietary": ["gluten-free", "chef-special"],
+      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+      "calories": 620,
+      "prepTimeMinutes": 22
+    },
+    {
+      "id": "woodfired-1",
+      "name": "Prime Dry-Aged Ribeye (14 oz)",
+      "category": "woodfired",
+      "price": 46,
+      "description": "45-day aged prime beef charred over oak embers, served with roasted garlic head, charred vine tomatoes, and rosemary sea-salt butter.",
+      "ingredients": ["Prime USDA ribeye", "Cultured bone-marrow herb butter", "Confit garlic", "Campari vine tomatoes", "Maldon salt"],
+      "dietary": ["gluten-free", "chef-special"],
+      "image": "/src/assets/images/dish_prime_steak_1792700294296.jpg",
+      "calories": 910,
+      "prepTimeMinutes": 25
+    },
+    {
+      "id": "woodfired-2",
+      "name": "Wood-Fired Margherita D.O.P.",
+      "category": "woodfired",
+      "price": 21,
+      "description": "Naturally fermented 48-hour sourdough crust, San Marzano tomato sauce, fior di latte, fresh basil, and extra virgin olive oil.",
+      "ingredients": ["Artisan sourdough", "San Marzano D.O.P.", "Fresh fior di latte mozzarella", "Sweet basil", "EVOO"],
+      "dietary": ["vegetarian"],
+      "image": "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80",
+      "calories": 780,
+      "prepTimeMinutes": 15
+    },
+    {
+      "id": "dessert-1",
+      "name": "Valrhona Molten Chocolate Fondant",
+      "category": "desserts",
+      "price": 14,
+      "description": "Warm 70% dark chocolate cake with molten core, Sicilian bronte pistachio gelato, tart raspberry coulis, and crushed pistachios.",
+      "ingredients": ["Valrhona Guanaja 70%", "Cultured butter", "Pistachio gelato", "Fresh raspberries", "Organic eggs"],
+      "dietary": ["vegetarian", "chef-special"],
+      "image": "/src/assets/images/dish_seasonal_dessert_1792700294437.jpg",
+      "calories": 520,
+      "prepTimeMinutes": 15
+    },
+    {
+      "id": "bev-1",
+      "name": "Smoked Cedar Old Fashioned",
+      "category": "beverages",
+      "price": 16,
+      "description": "Bourbon infused with charred cedar wood, Demerara sugar cube, Angostura & orange bitters, expressed orange peel.",
+      "ingredients": ["Small batch Bourbon", "Demerara syrup", "Aromatic bitters", "Charred cedar smoke", "Orange oil"],
+      "dietary": ["vegan", "gluten-free"],
+      "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80",
+      "calories": 190,
+      "prepTimeMinutes": 5
+    }
+  ],
+  "reservations": [
+    {
+      "id": "LUM-1001",
+      "customerName": "Elena Rostova",
+      "email": "elena.r@example.com",
+      "phone": "(415) 555-8932",
+      "guests": 2,
+      "date": "2026-10-23",
+      "time": "7:30 PM",
+      "seatingArea": "window_booth",
+      "occasion": "Anniversary",
+      "specialRequests": "Window booth with romantic candle preferred",
+      "status": "confirmed",
+      "createdAt": "2026-10-22T10:15:00Z"
+    },
+    {
+      "id": "LUM-1002",
+      "customerName": "Marcus Vance",
+      "email": "m.vance@example.com",
+      "phone": "(415) 555-4421",
+      "guests": 4,
+      "date": "2026-10-24",
+      "time": "6:30 PM",
+      "seatingArea": "main_dining",
+      "occasion": "Business Dinner",
+      "specialRequests": "Quiet table for conversation",
+      "status": "confirmed",
+      "createdAt": "2026-10-22T11:40:00Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-501",
+      "type": "pickup",
+      "items": [
+        {
+          "cartItemId": "item-demo-1",
+          "item": {
+            "id": "woodfired-2",
+            "name": "Wood-Fired Margherita D.O.P.",
+            "category": "woodfired",
+            "price": 21,
+            "description": "Naturally fermented 48-hour sourdough crust",
+            "dietary": ["vegetarian"],
+            "image": "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80"
+          },
+          "quantity": 1,
+          "selectedOptions": {},
+          "unitPrice": 21,
+          "totalPrice": 21
+        }
+      ],
+      "subtotal": 21,
+      "tax": 1.73,
+      "deliveryFee": 0,
+      "tip": 3.78,
+      "discount": 0,
+      "total": 26.51,
+      "customerName": "Chloe Bennett",
+      "phone": "(415) 555-9011",
+      "email": "chloe.b@example.com",
+      "pickupTime": "6:45 PM",
+      "paymentMethod": "apple_pay",
+      "status": "kitchen",
+      "createdAt": "2026-10-22T12:00:00Z",
+      "estimatedCompletionMinutes": 20
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-1",
+      "author": "San Francisco Chronicle",
+      "rating": 5,
+      "quote": "Luminère captures the soulful magic of open-flame cooking paired with California’s finest seasonal harvest.",
+      "date": "September 2026"
+    },
+    {
+      "id": "rev-2",
+      "author": "Michelin Guide Reviewer",
+      "rating": 5,
+      "quote": "The hand-rolled pappardelle al tartufo is pure poetry, balanced by impeccable dining room hospitality.",
+      "date": "August 2026"
+    }
+  ]
+}

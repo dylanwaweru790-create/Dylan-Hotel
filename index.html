@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luminère Bistro & Table</title>
+    <meta name="description" content="Modern neighborhood bistro with seasonal menus, real-time table reservations, and seamless online ordering." />
+    <meta property="og:title" content="Luminère Bistro & Table" />
+    <meta property="og:description" content="Modern neighborhood bistro with seasonal menus, real-time table reservations, and seamless online ordering." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-stone-50 text-stone-900 antialiased selection:bg-amber-100 selection:text-amber-900 min-h-screen flex flex-col font-sans">
+    
+    <!-- Top Announcement Strip -->
+    <aside class="bg-stone-900 text-stone-300 text-xs py-1.5 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-4 text-stone-400 text-xs">
+          <span>442 Market St, San Francisco</span>
+          <span class="hidden sm:inline text-stone-600">·</span>
+          <span class="hidden sm:inline">Open Daily: 11:30 AM – 10:30 PM</span>
+        </div>
+
+        <div class="flex items-center gap-3 text-xs">
+          <span class="hidden md:inline text-stone-400">Order Method:</span>
+          <div class="inline-flex rounded bg-stone-800 p-0.5 border border-stone-700">
+            <button
+              type="button"
+              id="nav-pickup-btn"
+              class="order-mode-pickup px-2 py-0.5 text-xs rounded bg-amber-600 text-white font-medium transition-colors"
+            >
+              Pickup (25m)
+            </button>
+            <button
+              type="button"
+              id="nav-delivery-btn"
+              class="order-mode-delivery px-2 py-0.5 text-xs rounded text-stone-300 hover:text-white transition-colors"
+            >
+              Delivery (40m)
+            </button>
+          </div>
+
+          <button
+            type="button"
+            id="nav-track-order-btn"
+            class="hidden text-xs text-amber-400 hover:text-amber-300 underline font-medium ml-2"
+          >
+            Track Live Order
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Navigation Bar (3-Zone Contract) -->
+    <header class="sticky top-0 z-40 bg-stone-50/95 backdrop-blur-md border-b border-stone-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-8 h-18">
+          
+          <!-- Zone 1: Brand Wordmark -->
+          <a href="#" class="text-xl sm:text-2xl font-bold tracking-tight text-stone-900 whitespace-nowrap shrink-0 hover:text-amber-700 transition-colors">
+            Luminère <span class="font-normal text-stone-500 text-base">Bistro</span>
+          </a>
+
+          <!-- Zone 2: Navigation Links -->
+          <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-700">
+            <a href="#menu" class="whitespace-nowrap shrink-0 hover:text-amber-700 transition-colors">Menu & Order</a>
+            <a href="#reservations" class="whitespace-nowrap shrink-0 hover:text-amber-700 transition-colors">Table Reservations</a>
+            <a href="#story" class="whitespace-nowrap shrink-0 hover:text-amber-700 transition-colors">Our Story</a>
+            <a href="#hours" class="whitespace-nowrap shrink-0 hover:text-amber-700 transition-colors">Hours & Location</a>
+          </nav>
+
+          <!-- Zone 3: Primary Actions -->
+          <div class="flex items-center gap-3 shrink-0">
+            <a
+              href="#reservations"
+              class="hidden lg:inline-flex items-center px-3.5 py-2 text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded-lg transition-colors whitespace-nowrap shrink-0"
+            >
+              Book a Table
+            </a>
+
+            <button
+              type="button"
+              id="open-cart-btn"
+              class="relative inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-sm"
+              aria-label="View shopping bag"
+            >
+              <span>Bag</span>
+              <span id="cart-badge" class="hidden bg-amber-600 text-white font-bold text-xs px-1.5 py-0.2 rounded-full min-w-5 text-center">0</span>
+            </button>
+
+            <!-- Mobile Hamburger -->
+            <button
+              type="button"
+              id="mobile-nav-toggle"
+              class="md:hidden p-2 text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100"
+              aria-label="Toggle navigation menu"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Dropdown -->
+      <div id="mobile-menu-dropdown" class="hidden md:hidden border-t border-stone-200 bg-stone-50 px-4 pt-3 pb-5 space-y-2">
+        <a href="#menu" class="mobile-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-stone-700 hover:bg-stone-100">Menu & Online Order</a>
+        <a href="#reservations" class="mobile-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-stone-700 hover:bg-stone-100">Table Reservations</a>
+        <a href="#story" class="mobile-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-stone-700 hover:bg-stone-100">Our Story & Heritage</a>
+        <a href="#hours" class="mobile-nav-link block px-3 py-2 text-sm font-medium rounded-lg text-stone-700 hover:bg-stone-100">Hours & Transit</a>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <!-- HERO SECTION -->
+      <section id="hero" class="relative overflow-hidden bg-stone-900 text-stone-100">
+        <div class="absolute inset-0 z-0">
+          <img
+            src="/src/assets/images/restaurant_dining_hero_1792700292853.jpg"
+            alt="Luminère Bistro warm ambient dining room interior"
+            class="w-full h-full object-cover object-center brightness-60"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-stone-900/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
+          <div class="max-w-3xl">
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide text-amber-300 uppercase mb-4">
+              <span>Market Street</span>
+              <span aria-hidden="true">·</span>
+              <span>Est. 2018</span>
+              <span aria-hidden="true">·</span>
+              <span>Wood-Fired & Seasonal</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight sm:leading-none mb-6 [text-wrap:balance]">
+              Warm hospitality. Seasonal produce. The rustic taste of fire.
+            </h1>
+
+            <p class="text-base sm:text-lg text-stone-200 leading-relaxed mb-8 max-w-2xl font-normal">
+              Welcome to Luminère. We celebrate California coast farm produce, handmade ribbon pastas, and prime cuts prepared over white oak embers. Dine in our sunlit hall or enjoy express pickup and delivery.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4">
+              <a
+                href="#reservations"
+                class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-stone-900 bg-amber-400 hover:bg-amber-300 rounded-lg shadow-md transition-colors"
+              >
+                Reserve a Table
+              </a>
+
+              <a
+                href="#menu"
+                class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-white bg-stone-800/80 hover:bg-stone-800 border border-stone-600 rounded-lg backdrop-blur-sm transition-colors"
+              >
+                Explore Menu & Order
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Feature Strip -->
+        <div class="relative z-10 border-t border-stone-800/80 bg-stone-950/90 backdrop-blur-md">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-xs text-stone-300">
+              <div>Wood-Fired White Oak Hearth</div>
+              <div>Hand-Rolled Fresh Pastas Daily</div>
+              <div>100% Organic Local Farm Partners</div>
+              <div>Pickup in 25m · Free Delivery $50+</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU & ORDER SECTION -->
+      <section id="menu" class="py-16 sm:py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Menu Header -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-stone-200">
+            <div>
+              <div class="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
+                Autumn / Winter Tasting Collection
+              </div>
+              <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-stone-900">
+                Seasonal Kitchen Menu
+              </h2>
+              <p class="text-sm sm:text-base text-stone-600 mt-2 max-w-xl font-normal">
+                Every dish is prepared to order using organic produce from Sonoma and Marin county farms, sustainably harvested seafood, and wood-fired technique.
+              </p>
+            </div>
+
+            <!-- Search input -->
+            <div class="relative w-full md:w-72 shrink-0">
+              <input
+                type="text"
+                id="menu-search"
+                placeholder="Search dishes or ingredients..."
+                class="w-full px-3.5 py-2 text-xs sm:text-sm bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600 shadow-2xs"
+              />
+              <button
+                type="button"
+                id="menu-search-clear"
+                class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-xs text-stone-400 hover:text-stone-700"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Filters & Dietary Badges -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-stone-900 text-white shadow-xs" data-category="all">
+                Full Menu
+              </button>
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="starters">
+                Starters & Crudo
+              </button>
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="mains">
+                Pastas & Mains
+              </button>
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="woodfired">
+                Wood-Fired Hearth
+              </button>
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="desserts">
+                Pastry & Desserts
+              </button>
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="beverages">
+                Cocktails & Wine
+              </button>
+            </div>
+
+            <!-- Dietary Filters -->
+            <div class="flex items-center gap-2 flex-wrap text-xs">
+              <span class="text-stone-500 font-medium mr-1">Dietary:</span>
+              <button type="button" class="dietary-btn px-2.5 py-1 rounded-md border border-stone-200 bg-white text-stone-600 hover:border-stone-300 transition-colors" data-tag="vegetarian">
+                Vegetarian
+              </button>
+              <button type="button" class="dietary-btn px-2.5 py-1 rounded-md border border-stone-200 bg-white text-stone-600 hover:border-stone-300 transition-colors" data-tag="gluten-free">
+                Gluten-Free
+              </button>
+              <button type="button" class="dietary-btn px-2.5 py-1 rounded-md border border-stone-200 bg-white text-stone-600 hover:border-stone-300 transition-colors" data-tag="chef-special">
+                Chef's Special
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Dish Cards Grid -->
+          <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Rendered by menu.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TABLE RESERVATIONS SECTION -->
+      <section id="reservations" class="py-16 sm:py-24 bg-white border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
+              Table Hospitality
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-stone-900">
+              Reserve Your Dining Experience
+            </h2>
+            <p class="text-sm sm:text-base text-stone-600 mt-2 font-normal">
+              We reserve half our dining room for advance bookings and maintain walk-in seats at our chef’s counter nightly.
+            </p>
+
+            <!-- Sub Tabs -->
+            <div class="inline-flex p-1 bg-stone-100 rounded-lg mt-6 border border-stone-200">
+              <button
+                type="button"
+                id="tab-res-book"
+                class="px-4 py-1.5 text-xs font-medium rounded-md bg-white text-stone-900 shadow-xs transition-colors"
+              >
+                Book a Table
+              </button>
+              <button
+                type="button"
+                id="tab-res-my-bookings"
+                class="px-4 py-1.5 text-xs font-medium rounded-md text-stone-600 hover:text-stone-900 transition-colors"
+              >
+                My Bookings <span id="my-bookings-count"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- View 1: Booking Form -->
+          <div id="view-res-form" class="max-w-4xl mx-auto">
+            
+            <!-- Confirmed state banner (hidden by default) -->
+            <div id="res-confirmation-card" class="hidden bg-stone-50 border border-stone-300 rounded-2xl p-6 sm:p-8 text-center max-w-xl mx-auto">
+              <div class="text-xs font-semibold tracking-wider text-amber-800 uppercase mb-1">
+                Reservation Confirmed
+              </div>
+              <h3 class="text-xl font-bold text-stone-900 mb-1">
+                We look forward to hosting you, <span id="conf-name"></span>
+              </h3>
+              <p class="text-xs text-stone-500 mb-6">
+                Confirmation <span id="conf-code" class="font-mono font-bold"></span> · Receipt sent to <span id="conf-email"></span>
+              </p>
+
+              <div class="bg-white border border-stone-200 rounded-xl p-4 text-left space-y-2.5 text-xs text-stone-700 mb-6">
+                <div class="flex justify-between border-b border-stone-100 pb-2">
+                  <span class="text-stone-500">Party Size</span>
+                  <strong id="conf-guests" class="text-stone-900"></strong>
+                </div>
+                <div class="flex justify-between border-b border-stone-100 pb-2">
+                  <span class="text-stone-500">Date & Time</span>
+                  <strong id="conf-datetime" class="text-stone-900"></strong>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-stone-500">Seating Area</span>
+                  <strong id="conf-area" class="text-stone-900"></strong>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  id="res-download-ics-btn"
+                  class="px-4 py-2 text-xs font-medium text-stone-800 bg-white hover:bg-stone-100 border border-stone-300 rounded-lg"
+                >
+                  Download .ics Calendar Event
+                </button>
+                <button
+                  type="button"
+                  id="res-book-another-btn"
+                  class="px-4 py-2 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg"
+                >
+                  Make Another Booking
+                </button>
+              </div>
+            </div>
+
+            <!-- Booking Form -->
+            <form id="reservation-form" class="bg-stone-50 rounded-2xl border border-stone-200 p-6 sm:p-10">
+              <div id="res-form-error" class="hidden mb-6 p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded-lg"></div>
+
+              <!-- Step 1: Party Size -->
+              <div class="mb-8">
+                <label class="block text-xs font-semibold text-stone-800 uppercase tracking-wide mb-3">
+                  1. Party Size
+                </label>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-white border border-stone-200 text-stone-700" data-guests="1">1</button>
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-stone-900 text-white shadow-xs" data-guests="2">2</button>
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-white border border-stone-200 text-stone-700" data-guests="3">3</button>
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-white border border-stone-200 text-stone-700" data-guests="4">4</button>
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-white border border-stone-200 text-stone-700" data-guests="5">5</button>
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-white border border-stone-200 text-stone-700" data-guests="6">6</button>
+                  <button type="button" class="guest-btn w-11 h-10 rounded-lg text-xs font-semibold bg-white border border-stone-200 text-stone-700" data-guests="8">8+</button>
+                </div>
+              </div>
+
+              <!-- Step 2: Date & Time -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <label for="res-date" class="block text-xs font-semibold text-stone-800 uppercase tracking-wide mb-2">
+                    2. Select Date
+                  </label>
+                  <input
+                    type="date"
+                    id="res-date"
+                    required
+                    class="w-full px-3.5 py-2 text-xs sm:text-sm bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-stone-800 uppercase tracking-wide mb-2">
+                    3. Select Time Slot
+                  </label>
+                  <div class="space-y-2">
+                    <div class="text-[11px] font-medium text-stone-500 uppercase">Dinner Service</div>
+                    <div class="flex flex-wrap gap-1.5">
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="5:30 PM">5:30 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="6:00 PM">6:00 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="6:30 PM">6:30 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-amber-600 text-white font-semibold" data-time="7:00 PM">7:00 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="7:30 PM">7:30 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="8:00 PM">8:00 PM</button>
+                    </div>
+
+                    <div class="text-[11px] font-medium text-stone-500 uppercase pt-2">Lunch Service</div>
+                    <div class="flex flex-wrap gap-1.5">
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="12:00 PM">12:00 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="12:30 PM">12:30 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="1:00 PM">1:00 PM</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Seating Preference -->
+              <div class="mb-8">
+                <label class="block text-xs font-semibold text-stone-800 uppercase tracking-wide mb-3">
+                  4. Seating Area Preference
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div class="seating-card p-3.5 rounded-xl border border-amber-600 bg-amber-50/40 ring-1 ring-amber-600 cursor-pointer" data-area="main_dining">
+                    <div class="flex justify-between font-bold text-xs text-stone-900 mb-1">
+                      <span>Main Dining Hall</span>
+                      <span class="text-amber-800 font-medium">Popular</span>
+                    </div>
+                    <p class="text-[11px] text-stone-500">Surrounded by warm brickwork and fireplace views.</p>
+                  </div>
+
+                  <div class="seating-card p-3.5 rounded-xl border border-stone-200 bg-white cursor-pointer" data-area="window_booth">
+                    <div class="flex justify-between font-bold text-xs text-stone-900 mb-1">
+                      <span>Window Booth</span>
+                      <span class="text-amber-800 font-medium">Romantic</span>
+                    </div>
+                    <p class="text-[11px] text-stone-500">Leather banquette seating facing Market Street.</p>
+                  </div>
+
+                  <div class="seating-card p-3.5 rounded-xl border border-stone-200 bg-white cursor-pointer" data-area="courtyard_terrace">
+                    <div class="flex justify-between font-bold text-xs text-stone-900 mb-1">
+                      <span>Heated Courtyard</span>
+                      <span class="text-amber-800 font-medium">Outdoor</span>
+                    </div>
+                    <p class="text-[11px] text-stone-500">Covered botanical terrace with overhead heaters.</p>
+                  </div>
+
+                  <div class="seating-card p-3.5 rounded-xl border border-stone-200 bg-white cursor-pointer" data-area="chefs_counter">
+                    <div class="flex justify-between font-bold text-xs text-stone-900 mb-1">
+                      <span>Chef's Hearth Counter</span>
+                      <span class="text-amber-800 font-medium">Immersive</span>
+                    </div>
+                    <p class="text-[11px] text-stone-500">Front-row view of our wood-fired stone oven.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Contact info -->
+              <div class="mb-8 border-t border-stone-200 pt-6">
+                <label class="block text-xs font-semibold text-stone-800 uppercase tracking-wide mb-3">
+                  5. Contact Information
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <label for="res-name" class="block text-[11px] text-stone-600 mb-1">Full Name *</label>
+                    <input type="text" id="res-name" required placeholder="Elena Rostova" class="w-full px-3 py-2 text-xs bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600" />
+                  </div>
+                  <div>
+                    <label for="res-phone" class="block text-[11px] text-stone-600 mb-1">Phone Number *</label>
+                    <input type="tel" id="res-phone" required placeholder="(415) 555-0192" class="w-full px-3 py-2 text-xs bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600" />
+                  </div>
+                  <div>
+                    <label for="res-email" class="block text-[11px] text-stone-600 mb-1">Email Address *</label>
+                    <input type="email" id="res-email" required placeholder="elena@example.com" class="w-full px-3 py-2 text-xs bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label for="res-occasion" class="block text-[11px] text-stone-600 mb-1">Dining Occasion</label>
+                    <select id="res-occasion" class="w-full px-3 py-2 text-xs bg-white border border-stone-200 rounded-lg">
+                      <option value="Casual Dinner">Casual Dinner</option>
+                      <option value="Birthday Celebration">Birthday Celebration</option>
+                      <option value="Anniversary">Anniversary</option>
+                      <option value="Date Night">Date Night</option>
+                      <option value="Business Dinner">Business Dinner</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="res-special" class="block text-[11px] text-stone-600 mb-1">Special Requests</label>
+                    <input type="text" id="res-special" placeholder="High chair, quiet corner, allergies..." class="w-full px-3 py-2 text-xs bg-white border border-stone-200 rounded-lg" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-stone-200">
+                <span class="text-xs text-stone-500">We hold tables for 15 minutes past scheduled arrival.</span>
+                <button type="submit" class="px-6 py-3 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-sm">
+                  Confirm Table Reservation
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- View 2: My Bookings Container -->
+          <div id="view-res-list" class="hidden max-w-3xl mx-auto">
+            <div id="my-bookings-container" class="space-y-4">
+              <!-- Rendered by reservations.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OUR STORY & PHILOSOPHY SECTION -->
+      <section id="story" class="py-16 sm:py-24 bg-stone-100/60 border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+              <div class="text-xs font-semibold uppercase tracking-wider text-amber-700">
+                Culinary Philosophy & Heritage
+              </div>
+
+              <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-stone-900 [text-wrap:balance]">
+                Simple ingredients, honest hospitality, and the timeless warmth of wood fire.
+              </h2>
+
+              <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+                Founded in 2018 on Market Street, Luminère was born from a desire to bring back unhurried dining. We work directly with independent coastal fishermen in Half Moon Bay and organic family orchards across Sonoma and Marin counties.
+              </p>
+
+              <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+                Every morning begins with rolling silky sheets of fresh egg pasta and feeding our 48-hour sourdough starter. By late afternoon, aged white oak logs are brought to ember in our custom stone hearth.
+              </p>
+
+              <div class="grid grid-cols-3 gap-4 pt-4 border-t border-stone-200 text-stone-800">
+                <div>
+                  <div class="text-xl sm:text-2xl font-bold tabular-nums text-stone-900">100%</div>
+                  <div class="text-xs text-stone-500 mt-0.5">Organic Produce</div>
+                </div>
+                <div>
+                  <div class="text-xl sm:text-2xl font-bold tabular-nums text-stone-900">48h</div>
+                  <div class="text-xs text-stone-500 mt-0.5">Sourdough Ferment</div>
+                </div>
+                <div>
+                  <div class="text-xl sm:text-2xl font-bold tabular-nums text-stone-900">45 Day</div>
+                  <div class="text-xs text-stone-500 mt-0.5">Dry-Aged Prime Cuts</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-4">
+              <div class="bg-white rounded-xl p-6 border border-stone-200 shadow-2xs">
+                <div class="text-xs font-bold uppercase tracking-wider text-stone-900 mb-2">Michelin Guide California</div>
+                <blockquote class="text-xs sm:text-sm text-stone-700 italic leading-relaxed">
+                  "Luminère strikes an effortless chord between a bustling neighborhood salon and an ambitious hearth kitchen. The pappardelle al tartufo is deeply comforting, and the fire-roasted meats show supreme restraint."
+                </blockquote>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 border border-stone-200 shadow-2xs">
+                <div class="text-xs font-bold uppercase tracking-wider text-stone-900 mb-2">San Francisco Chronicle</div>
+                <blockquote class="text-xs sm:text-sm text-stone-700 italic leading-relaxed">
+                  "One of the warmest dining rooms downtown. Whether you are sliding into a window booth for duck confit or picking up sourdough pizza on your commute home, the consistency is stellar."
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOURS & LOCATION SECTION -->
+      <section id="hours" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <div class="lg:col-span-5 bg-stone-50 rounded-2xl border border-stone-200 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">Service Hours</div>
+                <h3 class="text-xl font-bold text-stone-900 mb-4">Lunch, Dinner & Cocktails</h3>
+
+                <div class="space-y-4 text-xs sm:text-sm text-stone-700">
+                  <div class="border-b border-stone-200/60 pb-3">
+                    <strong class="text-stone-900 block">Lunch & Afternoon</strong>
+                    <span class="text-stone-600">Mon - Sun: 11:30 AM – 3:00 PM</span>
+                  </div>
+                  <div class="border-b border-stone-200/60 pb-3">
+                    <strong class="text-stone-900 block">Weekday Dinner</strong>
+                    <span class="text-stone-600">Mon - Thu: 5:00 PM – 10:00 PM</span>
+                  </div>
+                  <div>
+                    <strong class="text-stone-900 block">Weekend Extended Dinner</strong>
+                    <span class="text-stone-600">Fri - Sun: 5:00 PM – 11:00 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-stone-200 flex flex-wrap gap-4 text-xs">
+                <a href="tel:4158904420" class="font-semibold text-stone-900 hover:text-amber-700">(415) 890-4420</a>
+                <a href="mailto:reservations@luminerebistro.com" class="font-semibold text-stone-900 hover:text-amber-700">reservations@luminerebistro.com</a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-stone-50 rounded-2xl border border-stone-200 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">Location & Transit</div>
+                <h3 class="text-xl font-bold text-stone-900 mb-2">Market Street Downtown</h3>
+                <p class="text-xs text-stone-600 mb-6 font-normal">
+                  Located two blocks from Montgomery BART / Muni Station. Valet parking available on Sutter Street from 5:30 PM.
+                </p>
+
+                <div class="h-48 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 border border-stone-300 flex flex-col items-center justify-center p-6 text-center">
+                  <span class="font-bold text-stone-900 text-sm">Luminère Bistro & Table</span>
+                  <span class="text-xs text-stone-600 mt-1">442 Market Street, San Francisco, CA 94105</span>
+                  <span class="text-[11px] text-stone-500 mt-1">Between 1st & 2nd Street</span>
+                </div>
+              </div>
+
+              <div class="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-stone-200">
+                <button type="button" id="copy-address-btn" class="px-3.5 py-2 text-xs font-semibold text-stone-800 bg-white hover:bg-stone-100 border border-stone-300 rounded-lg">
+                  <span id="copy-address-text">Copy Full Address</span>
+                </button>
+                <a
+                  href="https://maps.google.com/?q=442+Market+Street+San+Francisco+CA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-3.5 py-2 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg"
+                >
+                  Google Maps Directions
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-300 pt-16 pb-12 border-t border-stone-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold tracking-tight text-white">
+              Luminère <span class="font-normal text-stone-400 text-sm">Bistro</span>
+            </h3>
+            <p class="text-xs text-stone-400 leading-relaxed font-normal">
+              A neighborhood hearth kitchen celebrating California coastal ingredients, wood fire craftsmanship, and warm hospitality.
+            </p>
+            <div>
+              <button
+                type="button"
+                id="open-api-console-btn"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-300 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded-lg transition-colors"
+              >
+                REST API & CRUD Inspector
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-400 block mb-4">Quick Links</span>
+            <ul class="space-y-2 text-xs text-stone-300">
+              <li><a href="#menu" class="hover:text-white">Full Seasonal Menu</a></li>
+              <li><a href="#reservations" class="hover:text-white">Table Reservations</a></li>
+              <li><a href="#menu" class="hover:text-white">Takeout & Delivery</a></li>
+              <li><a href="#story" class="hover:text-white">Our Heritage</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-400 block mb-4">Service Hours</span>
+            <div class="space-y-2 text-xs text-stone-400">
+              <p><strong class="text-stone-200 block">Lunch & Afternoon</strong>Mon - Sun: 11:30 AM – 3:00 PM</p>
+              <p><strong class="text-stone-200 block">Dinner Service</strong>Mon - Sun: 5:00 PM – 10:30 PM</p>
+            </div>
+          </div>
+
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-400 block mb-4">Address</span>
+            <div class="space-y-2 text-xs text-stone-400">
+              <p class="text-stone-200">442 Market Street, San Francisco, CA</p>
+              <p>Phone: (415) 890-4420</p>
+              <p>Email: reservations@luminerebistro.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+          <div>© 2026 Luminère Bistro & Table. All rights reserved.</div>
+          <div class="text-[11px] text-stone-500">
+            Please inform staff of any severe allergies before ordering.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================== -->
+    <!-- MODALS & DRAWERS (Semantic Vanilla Containers) -->
+    <!-- ============================================== -->
+
+    <!-- 1. CART & ORDER DRAWER -->
+    <div id="cart-drawer" class="hidden fixed inset-0 z-50 overflow-hidden bg-stone-950/60 backdrop-blur-xs">
+      <div id="cart-backdrop" class="absolute inset-0"></div>
+      <aside class="fixed inset-y-0 right-0 max-w-full flex pl-10" role="dialog" aria-modal="true" aria-label="Order Cart">
+        <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+          
+          <div class="p-5 border-b border-stone-200">
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-base font-bold text-stone-900">Your Order Bag</h2>
+              <button type="button" id="cart-drawer-close" class="p-1 text-stone-400 hover:text-stone-700 text-lg">✕</button>
+            </div>
+
+            <!-- Pickup / Delivery toggle -->
+            <div class="grid grid-cols-2 gap-1.5 p-1 bg-stone-100 rounded-lg">
+              <button type="button" id="cart-pickup-btn" class="order-mode-pickup py-1.5 text-xs font-semibold rounded-md bg-white text-stone-900 shadow-2xs">
+                Pickup · 25m
+              </button>
+              <button type="button" id="cart-delivery-btn" class="order-mode-delivery py-1.5 text-xs font-semibold rounded-md text-stone-600 hover:text-stone-900">
+                Delivery · 40m
+              </button>
+            </div>
+          </div>
+
+          <!-- Items list -->
+          <div class="flex-1 overflow-y-auto p-5">
+            <div id="cart-empty-state" class="h-full flex flex-col items-center justify-center text-center py-12">
+              <p class="text-sm font-semibold text-stone-800">Your bag is empty</p>
+              <p class="text-xs text-stone-500 mt-1">Explore our seasonal kitchen menu to add items.</p>
+            </div>
+            <div id="cart-items-container"></div>
+          </div>
+
+          <!-- Summary Box -->
+          <div id="cart-summary-box" class="p-5 border-t border-stone-200 bg-stone-50/50 space-y-4">
+            
+            <form id="promo-code-form" class="flex gap-2">
+              <input type="text" id="promo-code-input" placeholder="Promo code (try WELCOME10)" class="flex-1 px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-lg" />
+              <button type="submit" class="px-3 py-1.5 text-xs font-medium bg-stone-200 hover:bg-stone-300 rounded-lg">Apply</button>
+            </form>
+            <div id="promo-error" class="hidden text-[11px] text-red-600"></div>
+            <div id="promo-success" class="hidden text-[11px] text-emerald-700 font-medium"></div>
+
+            <!-- Tip Rates -->
+            <div>
+              <div class="text-[11px] font-semibold text-stone-700 uppercase tracking-wide mb-1.5">Tip for Bistro Staff</div>
+              <div class="grid grid-cols-5 gap-1 text-xs">
+                <button type="button" class="tip-rate-btn py-1.5 rounded-md border text-center bg-white text-stone-700" data-rate="10">10%</button>
+                <button type="button" class="tip-rate-btn py-1.5 rounded-md border text-center bg-white text-stone-700" data-rate="15">15%</button>
+                <button type="button" class="tip-rate-btn py-1.5 rounded-md border text-center bg-amber-600 text-white border-amber-600 font-semibold" data-rate="18">18%</button>
+                <button type="button" class="tip-rate-btn py-1.5 rounded-md border text-center bg-white text-stone-700" data-rate="20">20%</button>
+                <button type="button" class="tip-rate-btn py-1.5 rounded-md border text-center bg-white text-stone-700" data-rate="0">None</button>
+              </div>
+            </div>
+
+            <!-- Breakdown -->
+            <div class="space-y-1.5 text-xs text-stone-600 border-t border-stone-200 pt-3">
+              <div class="flex justify-between"><span>Subtotal</span><span id="cart-subtotal" class="tabular-nums">$0.00</span></div>
+              <div id="cart-discount-row" class="hidden flex justify-between text-emerald-700"><span>Discount</span><span id="cart-discount" class="tabular-nums">-$0.00</span></div>
+              <div class="flex justify-between"><span>Estimated Tax (8.25%)</span><span id="cart-tax" class="tabular-nums">$0.00</span></div>
+              <div id="cart-delivery-row" class="hidden flex justify-between"><span>Delivery Fee</span><span id="cart-delivery-fee" class="tabular-nums">$3.99</span></div>
+              <div class="flex justify-between"><span>Staff Gratuity</span><span id="cart-tip" class="tabular-nums">$0.00</span></div>
+              <div class="flex justify-between text-stone-900 font-bold text-sm pt-2 border-t border-stone-200">
+                <span>Total Due</span><span id="cart-total" class="tabular-nums">$0.00</span>
+              </div>
+            </div>
+
+            <button type="button" id="cart-proceed-checkout" class="w-full py-3 px-4 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-sm">
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- 2. ITEM CUSTOMIZE MODAL -->
+    <div id="item-customize-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="relative bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden border border-stone-200">
+        <div class="relative">
+          <img id="customize-image" src="" alt="" class="w-full h-52 object-cover" />
+          <button type="button" id="customize-close-btn" class="absolute top-3 right-3 p-1.5 rounded-full bg-stone-900/70 text-white hover:bg-stone-900">✕</button>
+        </div>
+
+        <div class="p-6">
+          <div class="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <h3 id="customize-title" class="text-xl font-bold text-stone-900"></h3>
+              <p id="customize-desc" class="text-xs text-stone-600 mt-1"></p>
+            </div>
+            <span id="customize-price" class="text-lg font-bold text-stone-900 tabular-nums"></span>
+          </div>
+
+          <div class="mb-4 hidden">
+            <p id="customize-ingredients" class="text-xs text-stone-600 p-2.5 bg-stone-50 rounded-lg border border-stone-200"></p>
+          </div>
+
+          <div class="space-y-3 mb-4 border-t border-stone-100 pt-3">
+            <span class="text-xs font-semibold text-stone-800 uppercase tracking-wide block">Choose a Side (Included)</span>
+            <div class="space-y-1.5 text-xs text-stone-700">
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 cursor-pointer">
+                <input type="radio" name="customize-side" value="Truffle Fries" checked />
+                <span>Parmesan Truffle Fries</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 cursor-pointer">
+                <input type="radio" name="customize-side" value="Roasted Fingerlings" />
+                <span>Duck-Fat Roasted Fingerling Potatoes</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 cursor-pointer">
+                <input type="radio" name="customize-side" value="Market Greens" />
+                <span>Market Salad & Meyer Lemon Vinaigrette</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="customize-notes" class="block text-xs font-semibold text-stone-800 uppercase tracking-wide mb-1">Kitchen Notes & Special Instructions</label>
+            <input type="text" id="customize-notes" placeholder="e.g., dressing on side, extra crispy..." class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg" />
+          </div>
+
+          <div class="flex items-center gap-4 pt-4 border-t border-stone-200">
+            <div class="flex items-center border border-stone-200 rounded-lg p-1 bg-stone-50">
+              <button type="button" id="customize-qty-minus" class="p-1.5 text-stone-600">-</button>
+              <span id="customize-qty-display" class="w-8 text-center text-xs font-semibold">1</span>
+              <button type="button" id="customize-qty-plus" class="p-1.5 text-stone-600">+</button>
+            </div>
+
+            <button type="button" id="customize-confirm-btn" class="flex-1 py-3 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg shadow-sm">
+              Add to Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CHECKOUT MODAL -->
+    <div id="checkout-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="relative bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden border border-stone-200">
+        <div class="p-5 border-b border-stone-200 flex items-center justify-between">
+          <div>
+            <h2 class="text-base font-bold text-stone-900">Checkout & Payment</h2>
+            <p class="text-xs text-stone-500">Review your contact and payment details</p>
+          </div>
+          <button type="button" id="checkout-close-btn" class="p-1 text-stone-400 hover:text-stone-700 text-lg">✕</button>
+        </div>
+
+        <form id="checkout-form" class="p-6 space-y-4">
+          <div id="checkout-error" class="hidden p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded-lg"></div>
+
+          <div>
+            <span class="text-xs font-semibold text-stone-800 uppercase tracking-wide block mb-2">1. Customer Information</span>
+            <div class="space-y-2">
+              <input type="text" id="checkout-name" required placeholder="Full Name *" class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg" />
+              <div class="grid grid-cols-2 gap-2">
+                <input type="tel" id="checkout-phone" required placeholder="Phone Number *" class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg" />
+                <input type="email" id="checkout-email" required placeholder="Email Address *" class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg" />
+              </div>
+            </div>
+          </div>
+
+          <div id="checkout-delivery-group" class="hidden">
+            <span class="text-xs font-semibold text-stone-800 uppercase tracking-wide block mb-2">2. Delivery Address</span>
+            <div class="space-y-2">
+              <input type="text" id="checkout-address" placeholder="Street Address, Apt/Suite *" class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg" />
+              <input type="text" id="checkout-notes" placeholder="Gate code / drop-off instructions" class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg" />
+            </div>
+          </div>
+
+          <div id="checkout-pickup-group">
+            <span class="text-xs font-semibold text-stone-800 uppercase tracking-wide block mb-2">2. Pickup Schedule</span>
+            <select id="checkout-pickup-time" class="w-full px-3 py-2 text-xs border border-stone-200 rounded-lg bg-white">
+              <option value="25m">ASAP (approx. 25-30 mins)</option>
+              <option value="45m">In 45 minutes</option>
+              <option value="Tonight at 7:30 PM">Tonight at 7:30 PM</option>
+              <option value="Tonight at 8:30 PM">Tonight at 8:30 PM</option>
+            </select>
+          </div>
+
+          <div>
+            <span class="text-xs font-semibold text-stone-800 uppercase tracking-wide block mb-2">3. Payment Method</span>
+            <div class="grid grid-cols-3 gap-2 mb-3">
+              <button type="button" class="payment-tab-btn py-2 px-3 rounded-lg border border-amber-600 bg-amber-50/50 ring-1 ring-amber-600 text-stone-900 font-semibold text-xs" data-method="card">Card</button>
+              <button type="button" class="payment-tab-btn py-2 px-3 rounded-lg border border-stone-200 text-stone-600 text-xs" data-method="apple_pay">Apple / Google</button>
+              <button type="button" class="payment-tab-btn py-2 px-3 rounded-lg border border-stone-200 text-stone-600 text-xs" data-method="cash">Cash</button>
+            </div>
+
+            <div id="card-fields-box" class="p-3 bg-stone-50 rounded-lg border border-stone-200 space-y-2">
+              <input type="text" placeholder="4242 •••• •••• 4242 (Mock Sandbox)" class="w-full px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-md" />
+              <div class="grid grid-cols-2 gap-2">
+                <input type="text" placeholder="MM / YY" class="w-full px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-md" />
+                <input type="text" placeholder="CVC" class="w-full px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-md" />
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-stone-200 flex items-center justify-between">
+            <span class="text-xs text-stone-600">Total: <strong id="checkout-submit-total" class="text-stone-900 text-sm">$0.00</strong></span>
+            <button type="submit" class="px-6 py-2.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-sm">
+              Place Order
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 4. LIVE ORDER STATUS MODAL -->
+    <div id="order-status-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="relative bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden border border-stone-200">
+        <div class="p-5 border-b border-stone-200 flex items-center justify-between">
+          <div>
+            <h2 class="text-base font-bold text-stone-900">Live Kitchen Order Tracker</h2>
+            <p class="text-xs text-stone-500 font-mono">Order <span id="status-order-id"></span> · <span id="status-method-badge"></span></p>
+          </div>
+          <button type="button" id="order-status-close" class="p-1 text-stone-400 hover:text-stone-700 text-lg">✕</button>
+        </div>
+
+        <div class="p-6">
+          <!-- Stepper -->
+          <div class="space-y-4 mb-6">
+            <div id="step-received" class="flex items-center gap-3">
+              <div id="dot-received" class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-amber-600 text-white">1</div>
+              <div><strong class="text-xs text-stone-900 block">Order Received</strong><span class="text-[11px] text-stone-500">Ticket printed and verified</span></div>
+            </div>
+            <div id="step-kitchen" class="flex items-center gap-3">
+              <div id="dot-kitchen" class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-stone-200 text-stone-500">2</div>
+              <div><strong class="text-xs text-stone-900 block">In Kitchen</strong><span class="text-[11px] text-stone-500">Actively preparing over hearth</span></div>
+            </div>
+            <div id="step-ready" class="flex items-center gap-3">
+              <div id="dot-ready" class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-stone-200 text-stone-500">3</div>
+              <div><strong class="text-xs text-stone-900 block">Ready / Dispatched</strong><span class="text-[11px] text-stone-500">Packaged hot for pickup or courier</span></div>
+            </div>
+            <div id="step-completed" class="flex items-center gap-3">
+              <div id="dot-completed" class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-stone-200 text-stone-500">4</div>
+              <div><strong class="text-xs text-stone-900 block">Completed</strong><span class="text-[11px] text-stone-500">Enjoy your meal!</span></div>
+            </div>
+          </div>
+
+          <!-- Receipt summary -->
+          <div class="border-t border-stone-200 pt-4 mb-5">
+            <div class="flex justify-between text-xs font-semibold text-stone-800 mb-2">
+              <span>Receipt (<span id="status-customer-name"></span>)</span>
+              <button type="button" id="order-print-receipt" class="text-stone-500 hover:text-stone-900 underline font-normal">Print</button>
+            </div>
+            <div id="status-receipt-items" class="max-h-32 overflow-y-auto space-y-1 divide-y divide-stone-100"></div>
+            <div class="flex justify-between font-bold text-xs text-stone-900 pt-2 border-t border-stone-200 mt-2">
+              <span>Total Paid</span><span id="status-receipt-total" class="tabular-nums"></span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-stone-200">
+            <button type="button" id="order-simulate-stage" class="px-3 py-1.5 text-xs font-semibold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-lg">
+              Simulate Next Stage (PATCH /api/orders)
+            </button>
+            <button type="button" id="order-status-close-btn" class="px-4 py-1.5 text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. REST API & CRUD INSPECTOR MODAL -->
+    <div id="api-console-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="relative bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden border border-stone-200 flex flex-col">
+        
+        <div class="p-4 sm:p-5 border-b border-stone-200 bg-stone-900 text-white flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-sm sm:text-base font-bold">RESTful API & CRUD Inspector</h2>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded font-mono">db.json Connected</span>
+            </div>
+            <p class="text-xs text-stone-400">Demonstrates all 5 HTTP methods: GET, POST, PUT, PATCH, and DELETE</p>
+          </div>
+          <button type="button" id="api-console-close" class="p-1 text-stone-400 hover:text-white text-lg">✕</button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-5 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 space-y-3">
+            <div class="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2">Live HTTP Methods</div>
+            
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex items-center justify-between">
+              <div>
+                <span class="px-1.5 py-0.5 text-[10px] font-bold bg-sky-100 text-sky-800 rounded font-mono">GET</span>
+                <span class="text-xs font-mono text-stone-700 ml-1">/api/menu</span>
+                <p class="text-[11px] text-stone-500">Read menu catalog</p>
+              </div>
+              <button type="button" id="test-get-btn" class="px-2.5 py-1.5 bg-stone-900 text-white text-xs font-semibold rounded">Test</button>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex items-center justify-between">
+              <div>
+                <span class="px-1.5 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-800 rounded font-mono">POST</span>
+                <span class="text-xs font-mono text-stone-700 ml-1">/api/menu</span>
+                <p class="text-[11px] text-stone-500">Create new seasonal risotto</p>
+              </div>
+              <button type="button" id="test-post-btn" class="px-2.5 py-1.5 bg-emerald-700 text-white text-xs font-semibold rounded">Test</button>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex items-center justify-between">
+              <div>
+                <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-100 text-amber-800 rounded font-mono">PUT</span>
+                <span class="text-xs font-mono text-stone-700 ml-1">/api/reservations/LUM-1001</span>
+                <p class="text-[11px] text-stone-500">Full update of booking</p>
+              </div>
+              <button type="button" id="test-put-btn" class="px-2.5 py-1.5 bg-amber-600 text-white text-xs font-semibold rounded">Test</button>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex items-center justify-between">
+              <div>
+                <span class="px-1.5 py-0.5 text-[10px] font-bold bg-purple-100 text-purple-800 rounded font-mono">PATCH</span>
+                <span class="text-xs font-mono text-stone-700 ml-1">/api/menu/main-1</span>
+                <p class="text-[11px] text-stone-500">Partial update of price ($29.50)</p>
+              </div>
+              <button type="button" id="test-patch-btn" class="px-2.5 py-1.5 bg-purple-700 text-white text-xs font-semibold rounded">Test</button>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex items-center justify-between">
+              <div>
+                <span class="px-1.5 py-0.5 text-[10px] font-bold bg-rose-100 text-rose-800 rounded font-mono">DELETE</span>
+                <span class="text-xs font-mono text-stone-700 ml-1">/api/reservations/LUM-1002</span>
+                <p class="text-[11px] text-stone-500">Delete table booking</p>
+              </div>
+              <button type="button" id="test-delete-btn" class="px-2.5 py-1.5 bg-rose-700 text-white text-xs font-semibold rounded">Test</button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 flex flex-col bg-stone-900 rounded-xl overflow-hidden border border-stone-800 text-stone-200">
+            <div class="p-3 border-b border-stone-800 bg-stone-950 flex items-center justify-between text-xs">
+              <span class="font-semibold text-white">Live Inspector Output</span>
+              <div class="flex items-center gap-2 font-mono text-[11px]">
+                <span id="api-status-code" class="text-stone-400">Ready</span>
+                <span>·</span>
+                <span id="api-duration" class="text-stone-400">-</span>
+              </div>
+            </div>
+
+            <div class="flex-1 p-4 font-mono text-xs overflow-y-auto max-h-96 space-y-3">
+              <div id="api-meta-info" class="text-amber-400 pb-2 border-b border-stone-800">Click any Test button to trigger an HTTP request</div>
+              <div>
+                <div class="text-[10px] text-stone-500 uppercase tracking-wider mb-1">Request Payload:</div>
+                <pre id="api-request-payload" class="p-2.5 bg-stone-950 rounded text-amber-300/90 overflow-x-auto text-[11px]">None</pre>
+              </div>
+              <div>
+                <div class="text-[10px] text-stone-500 uppercase tracking-wider mb-1">Response JSON:</div>
+                <pre id="api-response-payload" class="p-2.5 bg-stone-950 rounded text-emerald-300/90 overflow-x-auto text-[11px]">Waiting for test...</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. TOAST NOTIFICATION -->
+    <div id="toast-notification" class="hidden fixed bottom-6 right-6 z-50 bg-stone-900 text-white text-xs px-4 py-2.5 rounded-lg shadow-xl border border-stone-700 flex items-center gap-2">
+      <span id="toast-text"></span>
+    </div>
+
+    <!-- PURE JAVASCRIPT ENTRY SCRIPT -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
