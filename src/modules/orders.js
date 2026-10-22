@@ -222,6 +222,22 @@ export class OrdersModule {
       window.print();
     });
 
+    // 1-Click Reorder button
+    document.getElementById('order-reorder-btn')?.addEventListener('click', () => {
+      if (!this.activeOrder || !this.activeOrder.items) return;
+      this.activeOrder.items.forEach((cartItem) => {
+        this.addItem(
+          cartItem.menuItem,
+          cartItem.quantity,
+          cartItem.selectedOptions || {},
+          cartItem.notes || ''
+        );
+      });
+      document.getElementById('order-status-modal')?.classList.add('hidden');
+      this.openCartDrawer();
+      this.showToast(`Re-added ${this.activeOrder.items.length} items to your bag!`);
+    });
+
     // Live order track button in navbar
     document.getElementById('nav-track-order-btn')?.addEventListener('click', () => {
       if (this.orders.length > 0) {
