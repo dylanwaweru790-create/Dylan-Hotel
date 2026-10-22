@@ -109,11 +109,48 @@ export class MenuModule {
     this.searchQuery = '';
     this.activeDietary = new Set();
     this.activeCustomizeItem = null;
+    this.favorites = this.loadFavorites();
+  }
+
+  loadFavorites() {
+    try {
+      const data = localStorage.getItem('luminere_favorites');
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  saveFavorites() {
+    try {
+      localStorage.setItem('luminere_favorites', JSON.stringify(this.favorites));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  toggleFavorite(dishId) {
+    if (this.favorites.includes(dishId)) {
+      this.favorites = this.favorites.filter((id) => id !== dishId);
+    } else {
+      this.favorites.push(dishId);
+    }
+    this.saveFavorites();
+    this.updateFavoritesCount();
+    this.render();
+  }
+
+  updateFavoritesCount() {
+    const badge = document.getElementById('fav-count-badge');
+    if (badge) {
+      badge.textContent = `(${this.favorites.length})`;
+    }
   }
 
   async init() {
     await this.fetchMenuItems();
     this.bindEvents();
+    this.updateFavoritesCount();
     this.render();
   }
 
@@ -193,8 +230,10 @@ export class MenuModule {
 
   getFilteredItems() {
     return this.menuItems.filter((item) => {
-      // Category filter
-      if (this.currentCategory !== 'all' && item.category !== this.currentCategory) {
+      // Category filter (including favorites)
+      if (this.currentCategory === 'favorites') {
+        if (!this.favorites.includes(item.id)) return false;
+      } else if (this.currentCategory !== 'all' && item.category !== this.currentCategory) {
         return false;
       }
 
@@ -230,8 +269,8 @@ export class MenuModule {
     if (items.length === 0) {
       grid.innerHTML = `
         <div class="col-span-full py-16 text-center bg-white rounded-xl border border-stone-200">
-          <p class="text-base font-semibold text-stone-800">No dishes match your selection</p>
-          <p class="text-xs text-stone-500 mt-1">Try resetting search keywords or dietary filters.</p>
+          <p class="text-base font-semibold text-stone-800">${this.currentCategory === 'favorites' ? 'No favorited dishes yet' : 'No dishes match your selection'}</p>
+          <p class="text-xs text-stone-500 mt-1">${this.currentCategory === 'favorites' ? 'Click the heart icon on any dish to save it here for fast ordering.' : 'Try resetting search keywords or dietary filters.'}</p>
         </div>
       `;
       return;
@@ -245,6 +284,7 @@ export class MenuModule {
           .join(' · ');
 
         const isSpecial = item.dietary && item.dietary.includes('chef-special');
+        const isFav = this.favorites.includes(item.id);
 
         return `
         <div class="group bg-white rounded-xl border border-stone-200 overflow-hidden flex flex-col justify-between hover:border-stone-300 transition-all duration-200 hover:-translate-y-0.5">
@@ -261,6 +301,15 @@ export class MenuModule {
                 ? `<div class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-xs text-amber-300 text-xs px-2.5 py-1 rounded font-medium">Chef's Selection</div>`
                 : ''
             }
+            <button
+              type="button"
+              class="btn-favorite absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-transform hover:scale-110 shadow-sm z-10"
+              data-id="${item.id}"
+              title="${isFav ? 'Remove from favorites' : 'Save to favorites'}"
+              aria-label="${isFav ? 'Remove from favorites' : 'Save to favorites'}"
+            >
+              <span class="${isFav ? 'text-red-500 font-bold' : 'text-stone-400'} text-xs">${isFav ? '♥' : '♡'}</span>
+            </button>
           </div>
 
           <div class="p-5 flex-1 flex flex-col justify-between">
@@ -314,6 +363,13 @@ export class MenuModule {
       .join('');
 
     // Attach click events to dynamically rendered cards
+    grid.querySelectorAll('.btn-favorite').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleFavorite(btn.dataset.id);
+      });
+    });
+
     grid.querySelectorAll('.dish-clickable, .btn-customize').forEach((el) => {
       el.addEventListener('click', () => {
         const id = el.dataset.id;
