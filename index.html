@@ -21,7 +21,7 @@
         <div class="flex items-center gap-4 text-stone-400 text-xs">
           <span>442 Market St, San Francisco</span>
           <span class="hidden sm:inline text-stone-600">·</span>
-          <span class="hidden sm:inline">Open Daily: 11:30 AM – 10:30 PM</span>
+          <span id="nav-live-status" class="text-amber-300 font-medium">Checking hours...</span>
         </div>
 
         <div class="flex items-center gap-3 text-xs">
@@ -556,7 +556,10 @@
             <div class="lg:col-span-5 bg-stone-50 rounded-2xl border border-stone-200 p-6 sm:p-8 flex flex-col justify-between">
               <div>
                 <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">Service Hours</div>
-                <h3 class="text-xl font-bold text-stone-900 mb-4">Lunch, Dinner & Cocktails</h3>
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-xl font-bold text-stone-900">Lunch, Dinner & Cocktails</h3>
+                  <span id="hours-live-status-pill" class="text-xs px-2.5 py-1 rounded font-medium bg-amber-100 text-amber-900">Checking...</span>
+                </div>
 
                 <div class="space-y-4 text-xs sm:text-sm text-stone-700">
                   <div class="border-b border-stone-200/60 pb-3">
