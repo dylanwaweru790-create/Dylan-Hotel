@@ -225,11 +225,13 @@
               <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="woodfired">
                 Wood-Fired Hearth
               </button>
-              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="desserts">
-                Pastry & Desserts
-              </button>
               <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300" data-category="beverages">
                 Cocktails & Wine
+              </button>
+              <button type="button" class="category-btn px-3.5 py-2 text-xs font-medium rounded-lg whitespace-nowrap bg-white text-stone-700 border border-stone-200/80 hover:border-stone-300 flex items-center gap-1.5" data-category="favorites">
+                <span class="text-red-500 font-bold">♥</span>
+                <span>Favorites</span>
+                <span id="fav-count-badge" class="text-stone-400 font-normal text-[11px]">(0)</span>
               </button>
             </div>
 
@@ -380,9 +382,9 @@
                     <div class="flex flex-wrap gap-1.5">
                       <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="5:30 PM">5:30 PM</button>
                       <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="6:00 PM">6:00 PM</button>
-                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="6:30 PM">6:30 PM</button>
-                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-amber-600 text-white font-semibold" data-time="7:00 PM">7:00 PM</button>
-                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="7:30 PM">7:30 PM</button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="6:30 PM">6:30 PM · <span class="text-[10px] text-stone-400">3 left</span></button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-amber-600 text-white font-semibold" data-time="7:00 PM">7:00 PM · <span class="text-[10px] text-amber-200">2 left</span></button>
+                      <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="7:30 PM">7:30 PM · <span class="text-[10px] text-stone-400">Limited</span></button>
                       <button type="button" class="time-slot-btn px-2.5 py-1.5 text-xs rounded-md bg-white border border-stone-200 text-stone-700" data-time="8:00 PM">8:00 PM</button>
                     </div>
 
@@ -543,6 +545,44 @@
                   "One of the warmest dining rooms downtown. Whether you are sliding into a window booth for duck confit or picking up sourdough pizza on your commute home, the consistency is stellar."
                 </blockquote>
               </div>
+            </div>
+          </div>
+
+          <!-- Guest Reviews & Community Feedback -->
+          <div class="mt-16 pt-12 border-t border-stone-200">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1">Guest Experiences</div>
+                <h3 class="text-xl sm:text-2xl font-bold text-stone-900">What Our Diners Say</h3>
+                <p class="text-xs text-stone-600 mt-1">Live customer reviews saved directly to our restaurant backend database.</p>
+              </div>
+
+              <!-- Quick Review Form -->
+              <div class="w-full md:w-96 bg-white p-4 rounded-xl border border-stone-200 shadow-2xs">
+                <span class="text-xs font-bold text-stone-900 block mb-2">Leave a Quick Review</span>
+                <form id="review-form" class="space-y-2">
+                  <div id="review-form-error" class="hidden text-[11px] text-red-600 font-medium"></div>
+                  <div class="flex gap-2">
+                    <input type="text" id="review-name" placeholder="Your Name *" required class="flex-1 px-2.5 py-1.5 text-xs border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600" />
+                    <div class="flex items-center gap-1 text-sm cursor-pointer select-none">
+                      <span class="star-select-btn text-amber-400" data-rating="1">★</span>
+                      <span class="star-select-btn text-amber-400" data-rating="2">★</span>
+                      <span class="star-select-btn text-amber-400" data-rating="3">★</span>
+                      <span class="star-select-btn text-amber-400" data-rating="4">★</span>
+                      <span class="star-select-btn text-amber-400" data-rating="5">★</span>
+                    </div>
+                  </div>
+                  <textarea id="review-comment" rows="2" placeholder="Tell us about your meal or favorite dish..." required class="w-full px-2.5 py-1.5 text-xs border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-600 resize-none"></textarea>
+                  <button type="submit" class="w-full py-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-2xs">
+                    Submit Guest Review (POST /api/reviews)
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Dynamic reviews grid rendered by reviews.js -->
+            <div id="reviews-list-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <!-- Rendered by reviews.js -->
             </div>
           </div>
         </div>
@@ -929,10 +969,15 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between pt-2 border-t border-stone-200">
-            <button type="button" id="order-simulate-stage" class="px-3 py-1.5 text-xs font-semibold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-lg">
-              Simulate Next Stage (PATCH /api/orders)
-            </button>
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-stone-200">
+            <div class="flex items-center gap-2">
+              <button type="button" id="order-simulate-stage" class="px-3 py-1.5 text-xs font-semibold text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-lg">
+                Simulate Next Stage (PATCH)
+              </button>
+              <button type="button" id="order-reorder-btn" class="px-3 py-1.5 text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg">
+                Reorder Items
+              </button>
+            </div>
             <button type="button" id="order-status-close-btn" class="px-4 py-1.5 text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg">
               Close
             </button>
