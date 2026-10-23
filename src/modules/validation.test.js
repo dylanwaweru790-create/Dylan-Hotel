@@ -104,38 +104,38 @@ describe('Vanilla JS Validation Module', () => {
   describe('calculateOrderTotals', () => {
     it('correctly calculates pickup order without delivery fee', () => {
       const result = calculateOrderTotals({
-        subtotal: 40,
+        subtotal: 4000,
         orderType: 'pickup',
         discountPercentage: 0,
         tipPercentage: 18,
         taxRate: 0.0825,
       });
 
-      expect(result.subtotal).toBe(40);
+      expect(result.subtotal).toBe(4000);
       expect(result.deliveryFee).toBe(0);
-      expect(result.tax).toBe(3.3);
-      expect(result.tip).toBe(7.2);
-      expect(result.total).toBe(50.5);
+      expect(result.tax).toBe(330);
+      expect(result.tip).toBe(720);
+      expect(result.total).toBe(5050);
     });
 
-    it('applies delivery fee $3.99 when order is under $50', () => {
+    it('applies KSh 520 delivery fee when order is under KSh 6,500', () => {
       const result = calculateOrderTotals({
-        subtotal: 30,
+        subtotal: 3000,
         orderType: 'delivery',
         discountPercentage: 0,
         tipPercentage: 10,
         taxRate: 0.0825,
       });
 
-      expect(result.deliveryFee).toBe(3.99);
-      expect(result.tax).toBe(2.48);
-      expect(result.tip).toBe(3.0);
-      expect(result.total).toBe(39.47);
+      expect(result.deliveryFee).toBe(520);
+      expect(result.tax).toBe(247.5);
+      expect(result.tip).toBe(300);
+      expect(result.total).toBe(4067.5);
     });
 
-    it('waives delivery fee when subtotal is $50 or greater', () => {
+    it('waives delivery fee when subtotal is KSh 6,500 or greater', () => {
       const result = calculateOrderTotals({
-        subtotal: 60,
+        subtotal: 7000,
         orderType: 'delivery',
         discountPercentage: 0,
         tipPercentage: 20,
@@ -143,7 +143,7 @@ describe('Vanilla JS Validation Module', () => {
       });
 
       expect(result.deliveryFee).toBe(0);
-      expect(result.tip).toBe(12.0);
+      expect(result.tip).toBe(1400);
     });
 
     it('correctly calculates promo code discount percentage', () => {

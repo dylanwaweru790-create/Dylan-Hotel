@@ -1,5 +1,6 @@
 import { api } from './api.js';
 import { calculateOrderTotals, validateEmail, validatePhone } from './validation.js';
+import { formatKES } from './currency.js';
 
 export class OrdersModule {
   constructor() {
@@ -329,10 +330,10 @@ export class OrdersModule {
           <div class="flex items-start justify-between gap-2">
             <div class="flex-1">
               <h4 class="text-xs font-bold text-stone-900">${item.menuItem.name}</h4>
-              <div class="text-[11px] text-stone-500 tabular-nums">$${item.unitPrice.toFixed(2)} each</div>
+              <div class="text-[11px] text-stone-500 tabular-nums">${formatKES(item.unitPrice)} each</div>
               ${item.notes ? `<div class="text-[11px] text-amber-800 italic mt-0.5">"${item.notes}"</div>` : ''}
             </div>
-            <span class="text-xs font-bold text-stone-900 tabular-nums">$${item.totalPrice.toFixed(2)}</span>
+            <span class="text-xs font-bold text-stone-900 tabular-nums">${formatKES(item.totalPrice)}</span>
           </div>
 
           <div class="flex items-center justify-between mt-2.5">
@@ -383,17 +384,17 @@ export class OrdersModule {
       tipPercentage: this.tipRate,
     });
 
-    document.getElementById('cart-subtotal').textContent = `$${totals.subtotal.toFixed(2)}`;
-    document.getElementById('cart-tax').textContent = `$${totals.tax.toFixed(2)}`;
-    document.getElementById('cart-tip').textContent = `$${totals.tip.toFixed(2)}`;
-    document.getElementById('cart-total').textContent = `$${totals.total.toFixed(2)}`;
+    document.getElementById('cart-subtotal').textContent = formatKES(totals.subtotal);
+    document.getElementById('cart-tax').textContent = formatKES(totals.tax);
+    document.getElementById('cart-tip').textContent = formatKES(totals.tip);
+    document.getElementById('cart-total').textContent = formatKES(totals.total);
 
     const deliveryRow = document.getElementById('cart-delivery-row');
     const deliveryFeeEl = document.getElementById('cart-delivery-fee');
     if (deliveryRow && deliveryFeeEl) {
       if (this.orderType === 'delivery') {
         deliveryRow.classList.remove('hidden');
-        deliveryFeeEl.textContent = totals.deliveryFee === 0 ? 'FREE' : `$${totals.deliveryFee.toFixed(2)}`;
+        deliveryFeeEl.textContent = totals.deliveryFee === 0 ? 'FREE' : formatKES(totals.deliveryFee);
       } else {
         deliveryRow.classList.add('hidden');
       }
@@ -404,14 +405,14 @@ export class OrdersModule {
     if (discountRow && discountEl) {
       if (totals.discount > 0) {
         discountRow.classList.remove('hidden');
-        discountEl.textContent = `-$${totals.discount.toFixed(2)}`;
+        discountEl.textContent = `-${formatKES(totals.discount)}`;
       } else {
         discountRow.classList.add('hidden');
       }
     }
 
     const checkoutTotal = document.getElementById('checkout-submit-total');
-    if (checkoutTotal) checkoutTotal.textContent = `$${totals.total.toFixed(2)}`;
+    if (checkoutTotal) checkoutTotal.textContent = formatKES(totals.total);
   }
 
   async handleCheckoutSubmit(e) {
@@ -538,13 +539,13 @@ export class OrdersModule {
           (i) => `
           <div class="flex justify-between text-xs py-1">
             <span>${i.quantity}x ${i.menuItem.name}</span>
-            <span class="font-semibold tabular-nums">$${Number(i.totalPrice).toFixed(2)}</span>
+            <span class="font-semibold tabular-nums">${formatKES(i.totalPrice)}</span>
           </div>
         `
         )
         .join('');
     }
-    document.getElementById('status-receipt-total').textContent = `$${Number(order.total).toFixed(2)}`;
+    document.getElementById('status-receipt-total').textContent = formatKES(order.total);
 
     modal.classList.remove('hidden');
   }

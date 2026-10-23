@@ -31,7 +31,7 @@ export class ApiConsoleModule {
       this.executeCall('POST', '/api/menu', {
         name: 'Winter Black Truffle Risotto',
         category: 'mains',
-        price: 34,
+        price: 4420,
         description: 'Acquerello aged rice, black Perigord truffle butter, and crispy sage.',
         dietary: ['vegetarian', 'chef-special', 'gluten-free'],
       });
@@ -53,7 +53,7 @@ export class ApiConsoleModule {
 
     document.getElementById('test-patch-btn')?.addEventListener('click', () => {
       this.executeCall('PATCH', '/api/menu/main-1', {
-        price: 29.5,
+        price: 3840,
       });
     });
 

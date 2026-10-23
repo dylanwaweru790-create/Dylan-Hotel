@@ -1,4 +1,5 @@
 import { api } from './api.js';
+import { formatKES } from './currency.js';
 
 // Default static fallback items in case API is temporarily unavailable
 const FALLBACK_MENU = [
@@ -6,7 +7,7 @@ const FALLBACK_MENU = [
     id: 'starter-1',
     name: 'Pugliese Burrata & Heirloom Tomatoes',
     category: 'starters',
-    price: 18,
+    price: 2340,
     description: 'Creamy burrata, balsamic reduction, basil oil, toasted sourdough crisps, and sea salt flakes.',
     ingredients: ['Fresh burrata', 'Heirloom tomatoes', 'Aged balsamic', 'Basil', 'Sourdough'],
     dietary: ['vegetarian'],
@@ -18,7 +19,7 @@ const FALLBACK_MENU = [
     id: 'starter-2',
     name: 'Crispy Point Judith Calamari',
     category: 'starters',
-    price: 20,
+    price: 2600,
     description: 'Flash-fried squid with smoked paprika remoulade, pickled Fresno chilis, and grilled Meyer lemon.',
     ingredients: ['Squid', 'Chili remoulade', 'Pickled peppers', 'Lemon'],
     dietary: ['dairy-free'],
@@ -30,7 +31,7 @@ const FALLBACK_MENU = [
     id: 'main-1',
     name: 'Handmade Pappardelle al Tartufo',
     category: 'mains',
-    price: 28,
+    price: 3640,
     description: 'Fresh egg ribbon pasta tossed in a slow-braised wild forest mushroom ragù, shaved black winter truffle, and aged Parmigiano.',
     ingredients: ['Egg pasta', 'Chanterelle and porcini', 'Black truffle', 'Parmigiano'],
     dietary: ['vegetarian', 'chef-special'],
@@ -42,7 +43,7 @@ const FALLBACK_MENU = [
     id: 'main-2',
     name: 'Pan-Seared Chilean Sea Bass',
     category: 'mains',
-    price: 38,
+    price: 4940,
     description: 'Sustainably caught sea bass with crispy skin, creamy saffron fennel broth, baby leeks, and roasted fingerling potatoes.',
     ingredients: ['Sea bass', 'Saffron fennel broth', 'Leeks', 'Fingerlings'],
     dietary: ['gluten-free', 'chef-special'],
@@ -54,7 +55,7 @@ const FALLBACK_MENU = [
     id: 'woodfired-1',
     name: 'Prime Dry-Aged Ribeye (14 oz)',
     category: 'woodfired',
-    price: 46,
+    price: 5980,
     description: '45-day aged prime beef charred over oak embers, served with roasted garlic head, charred vine tomatoes, and rosemary sea-salt butter.',
     ingredients: ['USDA Prime Ribeye', 'Herb bone butter', 'Confit garlic', 'Tomatoes'],
     dietary: ['gluten-free', 'chef-special'],
@@ -67,7 +68,7 @@ const FALLBACK_MENU = [
     id: 'woodfired-2',
     name: 'Wood-Fired Margherita D.O.P.',
     category: 'woodfired',
-    price: 21,
+    price: 2730,
     description: 'Naturally fermented 48-hour sourdough crust, San Marzano tomato sauce, fior di latte, fresh basil, and extra virgin olive oil.',
     ingredients: ['Sourdough', 'San Marzano D.O.P.', 'Mozzarella', 'Sweet basil'],
     dietary: ['vegetarian'],
@@ -79,7 +80,7 @@ const FALLBACK_MENU = [
     id: 'dessert-1',
     name: 'Valrhona Molten Chocolate Fondant',
     category: 'desserts',
-    price: 14,
+    price: 1820,
     description: 'Warm 70% dark chocolate cake with molten core, Sicilian bronte pistachio gelato, tart raspberry coulis, and crushed pistachios.',
     ingredients: ['Valrhona Guanaja 70%', 'Pistachio gelato', 'Raspberries'],
     dietary: ['vegetarian', 'chef-special'],
@@ -91,7 +92,7 @@ const FALLBACK_MENU = [
     id: 'bev-1',
     name: 'Smoked Cedar Old Fashioned',
     category: 'beverages',
-    price: 16,
+    price: 2080,
     description: 'Bourbon infused with charred cedar wood, Demerara sugar cube, Angostura & orange bitters, expressed orange peel.',
     ingredients: ['Bourbon', 'Demerara syrup', 'Bitters', 'Cedar smoke'],
     dietary: ['vegan', 'gluten-free'],
@@ -326,7 +327,7 @@ export class MenuModule {
                   ${item.name}
                 </h3>
                 <span class="text-base font-bold text-stone-900 tabular-nums shrink-0">
-                  $${Number(item.price).toFixed(2)}
+                  ${formatKES(item.price)}
                 </span>
               </div>
 
@@ -438,7 +439,7 @@ export class MenuModule {
 
     document.getElementById('customize-title').textContent = item.name;
     document.getElementById('customize-desc').textContent = item.description;
-    document.getElementById('customize-price').textContent = `$${Number(item.price).toFixed(2)}`;
+    document.getElementById('customize-price').textContent = formatKES(item.price);
     document.getElementById('customize-image').src = item.image;
     document.getElementById('customize-qty-display').textContent = '1';
     document.getElementById('customize-notes').value = '';
@@ -463,7 +464,7 @@ export class MenuModule {
     const total = Number(this.activeCustomizeItem.price) * qty;
     const btn = document.getElementById('customize-confirm-btn');
     if (btn) {
-      btn.textContent = `Add to Order · $${total.toFixed(2)}`;
+      btn.textContent = `Add to Order · ${formatKES(total)}`;
     }
   }
 

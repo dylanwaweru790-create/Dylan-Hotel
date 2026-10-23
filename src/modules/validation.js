@@ -71,9 +71,9 @@ export function calculateOrderTotals(params) {
   const taxRate = params.taxRate !== undefined ? Number(params.taxRate) : 0.0825;
   const tax = Number((discountedSubtotal * taxRate).toFixed(2));
 
-  // Delivery fee is $3.99 for orders under $50, FREE for $50+
+  // KSh 520 delivery fee for orders under KSh 6,500; free above that.
   const deliveryFee =
-    params.orderType === 'delivery' ? (subtotal >= 50 ? 0 : 3.99) : 0;
+    params.orderType === 'delivery' ? (subtotal >= 6500 ? 0 : 520) : 0;
 
   const tipRate = Number(params.tipPercentage) || 0;
   const tip = Number(((discountedSubtotal * tipRate) / 100).toFixed(2));
