@@ -1,9 +1,4 @@
-# Luminère Bistro & Table — Web Application
-
-> A modern restaurant web application built with **pure Vanilla JavaScript** (standard ES Modules), semantic HTML, responsive CSS, and an Express REST API backend with JSON Server data persistence. Features an interactive seasonal menu, real-time table reservations, an online ordering system (takeout & delivery), and an integrated REST CRUD Inspector.
-
-**Live Application URL:** [https://ais-dev-b4hblko4g5pz6txyyx2tys-966188637149.europe-west2.run.app](https://ais-dev-b4hblko4g5pz6txyyx2tys-966188637149.europe-west2.run.app)  
-**Author:** Dylan Waweru (Moringa School)  
+> A modern restaurant web application built with **pure Vanilla JavaScript** (standard ES Modules), semantic HTML, responsive CSS, and an Express REST API backend with JSON Server data persistence. Features an interactive seasonal menu, real-time table reservations, an online ordering system (takeout & delivery), and an integrated REST CRUD Inspector.**Author:** Dylan Waweru (Moringa School)  
 **Architecture:** Pure Vanilla JavaScript (No JSX, No TSX, No TypeScript)  
 **License:** [MIT](./LICENSE)
 
